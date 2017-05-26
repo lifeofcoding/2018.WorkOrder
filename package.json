@@ -1,0 +1,16 @@
+{
+  "name": "workorder",
+  "version": "2.0.0",
+  "description": "2018 Tech Work Order",
+  "main": "bin/server",
+  "scripts": {
+    "start": "node bin/server"
+  },
+  "author": "Howard Bates",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "latest",
+    "formidable": "latest",
+    "nedb": "latest"
+  }
+}

@@ -1,0 +1,150 @@
+<% include public/views/header.ejs %>
+
+
+<div class="row">
+    <div class="small-2 columns text-right">
+        <img src="public/images/PPS_Logo.png" height="60" width="40">
+    </div>
+    <div class="small-8 columns text-center">
+        <div class="row">
+            <h3 id="title">Northmen Customer Services: Technology</h3>
+        </div>
+        <div class="row">
+            <h4 id="title">2018 Work Order System</h4>
+        </div>
+    </div>
+    <div class="small-2 columns">
+        <img src="public/images/P_Logo.png" height="60" width="40" style="padding-top: 20px">
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="small-4 columns">
+        <span class="expanded button" id="entryButton">Entry/Update</span>
+    </div>
+    <div class="small-4 columns">
+        <span class="expanded button" id="listButton">Work List</span>
+    </div>
+    <div class="small-4 columns">
+        <span class="expanded button" id="legacyButton">Legacy</span>
+    </div>
+</div>
+
+<% include public/views/list.ejs %>
+
+<% include public/views/legacy.ejs %>
+
+<div id="entry">
+    <form id="mainForm">
+        <div class="row">
+            <div class="small-2 columns">
+                <span class="label">Building</span>
+                <select name="building" id="building" required>
+                    <option></option>
+                    <option value="Central">Central</option>
+                    <option value="Lincoln">Lincoln</option>
+                    <option value="Ottawa">Ottawa</option>
+                    <option value="Sheridan">Sheridan</option>
+                    <option value="Montessori">Montessori</option>
+                    <option value="PHS">PHS</option>
+                    <option value="PMS">PMS</option>
+                    <option value="Spitler">Spitler</option>
+                    <option value="SFX">SFX</option>
+                    <option value="Stadium">Stadium</option>
+                </select>
+            </div>
+            <div class="small-2 columns">
+                <span class="label">Room Number</span>
+                <input type="number" name="roomNumber" id="roomNumber" maxlength="3" required>
+            </div>
+            <div class="small-2 columns">
+                <span class="label">Room Number Maps</span>
+                <select id="maps" required>
+                    <option>Choose for map</option>
+                    <option value="Central">Central</option>
+                    <option value="Lincoln">Lincoln</option>
+                    <option value="Ottawa">Ottawa</option>
+                    <option value="Sheridan">Sheridan</option>
+                    <option value="Montessori">Montessori</option>
+                    <option value="PHS">PHS</option>
+                    <option value="PMS">PMS</option>
+                    <option value="Spitler">Spitler</option>
+                    <option value="SFX">SFX</option>
+                    <option value="Stadium">Stadium</option>
+                </select>
+            </div>
+            <div class="small-2 columns">
+                <span class="label">Priority</span>
+                <select name="priority" id="priority" required>
+                    <option></option>
+                    <option value="Summer">Summer</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Severe">Severe</option>
+                </select>
+            </div>
+            <div class="small-4 columns end">
+                <span class="label">Submitter</span>
+                <input type="text" name="submitter" id="submitter">
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns end">
+                <span class="label">Description of problem</span>
+                <textarea name="problemDesc" id="problemDesc" rows="5" cols="30"></textarea>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="small-3 columns text-center">
+                <i class="fa fa-caret-left expanded button" id="back"></i>
+            </div>
+            <div class="small-6 columns" id="hoverParent">
+                <i class="fa fa-star expanded button" id="newSubmission"></i>
+            </div>
+            <div class="small-3 columns end">
+                <i class="fa fa-caret-right expanded button" id="forward"></i>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="small-12 columns end">
+                <span class="large expanded button success" id="submit">SUBMIT</span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="small-12 columns end">
+                <h4 id="result">&nbsp</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-2 columns">
+                <span class="label">Completed</span>
+                <input type="hidden" name="completed" value="0" id="completedHidden">
+                <input type="checkbox" name="completed" value="1" id="completed">
+            </div>
+            <div class="small-4 columns">
+                <span class="label">Assignment:</span>
+                <select name="assigned" id="assigned">
+                    <option></option>
+                    <option value="Cody">Cody</option>
+                    <option value="Ben">Ben</option>
+                    <option value="Howard">Howard</option>
+                    <option value="Students">Students</option>
+                    <option value="Atlas">Atlas</option>
+                    <option value="Atlas">Presidio</option>
+                    <option value="Any">Any</option>
+                </select>
+            </div>
+            <div class="small-6 columns end">
+                <span class="label">Status</span>
+                <textarea name="status" id="status" rows="1"></textarea>
+            </div>
+        </div>
+        <input type="hidden" name="id" id="id">
+        <input type="hidden" name="date" id="date">
+    </form>
+</div>
+
+<% include public/views/footer.ejs %>
