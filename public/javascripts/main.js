@@ -112,8 +112,14 @@ class EventHandler {
             let value = element.options[element.selectedIndex].value;  //https://stackoverflow.com/questions/1085801/get-selected-value-in-dropdown-list-using-javascript
             console.log(value);
             switch (value) {
-                case 'Central':
+                case 'Central1':
                     window.open('http://resources.petoskeyschools.org/tech-bids/maps/central_1.pdf', '_blank');
+                    break;
+                case 'Central2':
+                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/central_2.pdf', '_blank');
+                    break;
+                case 'Central3':
+                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/central_3.pdf', '_blank');
                     break;
                 case 'Lincoln':
                     window.open('http://resources.petoskeyschools.org/tech-bids/maps/Lincoln.pdf', '_blank');
@@ -124,23 +130,29 @@ class EventHandler {
                 case 'Sheridan':
                     window.open('http://resources.petoskeyschools.org/tech-bids/maps/Sheridan.pdf', '_blank');
                     break;
-                case 'Montessori':
-                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/central_1.pdf', '_blank');
+                case 'PHS1':
+                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/HS_1.pdf', '_blank');
                     break;
-                case 'PHS':
-                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/central_1.pdf', '_blank');
+                case 'PHS2':
+                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/HS_2.pdf', '_blank');
+                    break;
+                case 'PHS3':
+                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/HS_3.pdf', '_blank');
                     break;
                 case 'PMS':
-                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/central_1.pdf', '_blank');
+                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/MS_1.pdf', '_blank');
                     break;
-                case 'Spitler':
-                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/central_1.pdf', '_blank');
+                case 'Spitler1':
+                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/spitler_1.pdf', '_blank');
+                    break;
+                case 'Spitler2':
+                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/spitler_2.pdf', '_blank');
                     break;
                 case 'SFX':
-                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/central_1.pdf', '_blank');
+                    window.open('http://resources.petoskeyschools.org/', '_blank');
                     break;
                 case 'Stadium':
-                    window.open('http://resources.petoskeyschools.org/tech-bids/maps/central_1.pdf', '_blank');
+                    window.open('http://resources.petoskeyschools.org/', '_blank');
                     break;
                 default:
                     console.log(`Invalid choice`);
