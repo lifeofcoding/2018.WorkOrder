@@ -2,103 +2,107 @@
 @import 'utility';
 
 #newSubmission #newHover {
-     display: none;
+  display: none;
 }
 
 #newSubmission:hover #newHover {
-     display: block;
+  display: block;
 }
 
 @media print {
-     @page {
-          margin: 1cm;
-     }
+  @page {
+    margin: 1cm;
+  }
 
-     .noPrint {
-          display: none;
-     }
+  .noPrint {
+    display: none;
+  }
 
-     .forPrint {
-          font-size:7pt;
-          color: black;
-     }
+  .forPrint {
+    font-size: 7pt;
+    color: black;
+  }
 }
 
 image {
-     max-width: 100%;
-     height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .img-center {
-     display: block;
-     margin: 0 auto;
-     max-width: 100%;
-     height: auto;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .vertical-center {
-     top: 50%;
-     transform: translateY(25%);
+  top: 50%;
+  transform: translateY(25%);
 }
 
 .text-center {
-     text-align: center;
+  text-align: center;
 }
 
 .bottom {
-     position: fixed;
-     bottom: 5px;
-     width: 100%;
-     right: 0;
-     left: 0;
+  position: fixed;
+  bottom: 5px;
+  width: 100%;
+  right: 0;
+  left: 0;
 }
 
 .glow img:hover {
-     -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-     border-radius: 6px;
-     transition: all 0.3s ease-in;
-     box-shadow: 0 0 10px 0 rgba(0, 255, 0, 0.67);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  transition: all 0.3s ease-in;
+  box-shadow: 0 0 10px 0 rgba(0, 255, 0, 0.67);
 }
 
 .bottom-border {
-     border: 1px solid #466d98;
+  border: 1px solid #466d98;
 }
 
 .grey-box {
-     background-color: #838383;
-     color: white;
+  background-color: #838383;
+  color: white;
 }
 
 .xxx-thin {
-     height: 2em;
+  height: 2em;
 }
 
 .xx-thin {
-     height: 2.5em;
+  height: 2.5em;
 }
 
 .x-thin {
-     height: 2.8em;
+  height: 2.8em;
 }
 
 #top {
-     margin-top: 4px;
+  margin-top: 4px;
 }
 
 textarea {
-     width: 100%;
-     height: auto;
+  width: 100%;
+  height: auto;
 }
 
 #tripNums {
-     width: 10em;
+  width: 10em;
 }
 
 #tripMileage {
-     width: 10em;
+  width: 10em;
 }
 
 #tripDate {
-     width: 10em;
+  width: 10em;
+}
+
+#p_logo {
+  padding-top: 15px;
 }

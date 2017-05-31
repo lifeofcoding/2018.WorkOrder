@@ -1,35 +1,5 @@
 <div class="row" id="list">
-    <div class="small-12 columns">
+    <div class="small-12 columns" id="listData">
         <h4>Current Work:</h4>
-        <table>
-            <tr>
-                <td><strong>Date</strong></td>
-                <td><strong>Building</strong></td>
-                <td><strong>Room#</strong></td>
-                <td><strong>Priority</strong></td>
-                <td><strong>Challenge</strong></td>
-                <td><strong>Assignment</strong></td>
-                <td><strong>Status</strong></td>
-            </tr>
-            <% if (data.length > 0) { %>
-                <% for (let i = 0; i < data.length; i++) { %>
-                    <tr>
-                        <% if (data[i].completed == 0) { %>
-                            <td><%= data[i].date %></td>
-                            <td><%= data[i].building %></td>
-                            <td><%= data[i].roomNumber %></td>
-                            <td><%= data[i].priority %></td>
-                            <td><%= data[i].problemDesc %></td>
-                            <td><%= data[i].assigned %></td>
-                            <td><%= data[i].status %></td>
-                        <% } %>
-                    </tr>
-                <% } %>
-            <% } else { %>
-                <tr>
-                    <td>No Data</td>
-                </tr>
-            <% }%>
-        </table>
     </div>
 </div>
