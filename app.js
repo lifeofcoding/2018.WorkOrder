@@ -25,7 +25,6 @@ class app {
                          response.writeHead(200, {'Content-Type': contentType});
                          response.end(string, 'utf-8');
                     } else if (contentType.indexOf('html') >= 0) {
-                         // this.ejsData = null;
                          response.writeHead(200, {'Content-Type': contentType});
                          response.end(EJS.render(string, {
                               data: this.ejsData,
@@ -51,7 +50,6 @@ class app {
                               });
                          });
                     } else if (request.headers['x-requested-with'] === 'XMLHttpRequest1') {
-                         console.log(`BOO!`);
                          DATA_HANDLER.generateInitialData((fetchedData) => {
                               response.writeHead(200, {'content-type': 'application/json'});
                               response.end(JSON.stringify(fetchedData));
@@ -65,10 +63,13 @@ class app {
                               next(err);
                          }).on('end', () => {
                               DATA_HANDLER.queryData(formData);
-                              // this.ejsData = null;
-                              // console.log(formData);
+                              response.writeHead(200, {'content-type': 'text/plain'});
+                              response.end('Done');
+                         });
+                    } else if (request.headers['x-requested-with'] === 'XMLHttpRequest3') {
+                         DATA_HANDLER.getCompletedWork((fetchedData) => {
                               response.writeHead(200, {'content-type': 'application/json'});
-                              response.end(JSON.stringify(formData));
+                              response.end(JSON.stringify(fetchedData));
                          });
                     } else if (request.headers['x-requested-with'] === 'XMLHttpRequest4') {
                          request.on('data', () => {
@@ -79,7 +80,7 @@ class app {
                          });
                     } else {
                          response.writeHead(405, "Method not supported", {'Content-Type': 'text/html'});
-                         response.end('<html><head><title>405 - Method not supported</title></head><body><h1>Method not supported.</h1></body></html>');
+                         response.end(`<html><head><title>405 - Method not supported</title></head><body><h1>Method not supported.</h1></body></html>`);
                     }
                } else if (request.url.indexOf('.css') >= 0) {
                     DATA_HANDLER.renderDom(request.url.slice(1), 'text/css', httpHandler, 'utf-8');

@@ -73,7 +73,13 @@ class DataHandler {
     }
 
     static generateInitialData(callback) {
-        DB.find({}, (err, docs) => {
+        DB.find({ completed: '0' }, (err, docs) => {
+            callback(docs);
+        });
+    }
+
+    static getCompletedWork(callback) {
+        DB.find({ completed: '1' }, (err, docs) => {
             callback(docs);
         });
     }

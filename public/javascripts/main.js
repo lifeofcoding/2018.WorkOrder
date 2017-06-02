@@ -42,24 +42,25 @@ class main {
 class EventHandler {
      constructor() {
           this.workList = [];
-          this.completedList = [];
           this.counter = 0;
           this.backCount = 0;
           this.forwardCount = 0;
           this.recordCount = 0;
+          this.populateForm();
+     }
 
+     populateForm() {
+          document.getElementById('mainForm').reset();
+          this.counter = 0;
+          this.recordCount = 0;
           this.performAjax('XMLHttpRequest1', 0, (response) => {
                let tempList = JSON.parse(response);
                for (let i = 0; i < Object.keys(tempList).length; i++) {
                     delete tempList[i].maps;
-                    if (Number(tempList[i].completed) === 0) {
-                         this.workList.unshift(tempList[i]);
-                         this.recordCount++;
-                         this.putData();
-                         this.countWorkOrders(this.recordCount);
-                    } else {
-                         this.completedList.push(tempList[i]);
-                    }
+                    this.workList.unshift(tempList[i]);
+                    this.recordCount++;
+                    this.putData();
+                    this.countWorkOrders(this.recordCount);
                }
           });
      }
@@ -84,27 +85,25 @@ class EventHandler {
                     let addHTML = document.createElement('table');
                     addHTML.innerHTML =
                          `<tr>
-                               <td><strong>Date</strong></td>
-                               <td><strong>Building</strong></td>
-                               <td><strong>Room#</strong></td>
-                               <td><strong>Priority</strong></td>
-                               <td><strong>Challenge</strong></td>
-                               <td><strong>Assignment</strong></td>
-                               <td><strong>Status</strong></td>
-                           </tr>`;
+                       <td><strong>Date</strong></td>
+                       <td><strong>Building</strong></td>
+                       <td><strong>Room#</strong></td>
+                       <td><strong>Priority</strong></td>
+                       <td><strong>Challenge</strong></td>
+                       <td><strong>Assignment</strong></td>
+                       <td><strong>Status</strong></td>
+                    </tr>`;
                     for (let i = 0; i < data.length; i++) {
-                         if (Number(data[i].completed) === 0) {
-                              addHTML.innerHTML +=
-                                   `<tr>
-                                        <td>${data[i].date}</td>
-                                        <td>${data[i].building}</td>
-                                        <td>${data[i].roomNumber}</td>
-                                        <td>${data[i].priority}</td>
-                                        <td>${data[i].problemDesc}</td>
-                                        <td>${data[i].assigned}</td>
-                                        <td>${data[i].status}</td>
-                                   </tr>`;
-                         }
+                         addHTML.innerHTML +=
+                              `<tr>
+                            <td>${data[i].date}</td>
+                            <td>${data[i].building}</td>
+                            <td>${data[i].roomNumber}</td>
+                            <td>${data[i].priority}</td>
+                            <td>${data[i].problemDesc}</td>
+                            <td>${data[i].assigned}</td>
+                            <td>${data[i].status}</td>
+                        </tr>`;
                     }
                     document.getElementById('listData').appendChild(addHTML);
                     let rows = document.getElementsByTagName('tr');
@@ -129,31 +128,31 @@ class EventHandler {
                let password = prompt(`Please enter password: `);
                this.performAjax('XMLHttpRequest0', password, (response) => {
                     if (response === 'true') {
-                         this.performAjax('XMLHttpRequest1', 0, (data) => {
+                         this.performAjax('XMLHttpRequest3', 0, (data) => {
                               data = JSON.parse(data);
                               let addHTML = document.createElement('table');
                               addHTML.innerHTML =
-                              `<tr>
-                                    <td><strong>Date</strong></td>
-                                    <td><strong>Building</strong></td>
-                                    <td><strong>Room#</strong></td>
-                                    <td><strong>Priority</strong></td>
-                                    <td><strong>Challenge</strong></td>
-                                    <td><strong>Assignment</strong></td>
-                                    <td><strong>Status</strong></td>
-                                </tr>`;
+                                   `<tr>
+                                <td><strong>Date</strong></td>
+                                <td><strong>Building</strong></td>
+                                <td><strong>Room#</strong></td>
+                                <td><strong>Priority</strong></td>
+                                <td><strong>Challenge</strong></td>
+                                <td><strong>Assignment</strong></td>
+                                <td><strong>Status</strong></td>
+                            </tr>`;
                               for (let i = 0; i < data.length; i++) {
                                    if (Number(data[i].completed) === 1) {
                                         addHTML.innerHTML +=
-                                        `<tr>
-                                             <td>${data[i].date}</td>
-                                             <td>${data[i].building}</td>
-                                             <td>${data[i].roomNumber}</td>
-                                             <td>${data[i].priority}</td>
-                                             <td>${data[i].problemDesc}</td>
-                                             <td>${data[i].assigned}</td>
-                                             <td>${data[i].status}</td>
-                                        </tr>`;
+                                             `<tr>
+                                         <td>${data[i].date}</td>
+                                         <td>${data[i].building}</td>
+                                         <td>${data[i].roomNumber}</td>
+                                         <td>${data[i].priority}</td>
+                                         <td>${data[i].problemDesc}</td>
+                                         <td>${data[i].assigned}</td>
+                                         <td>${data[i].status}</td>
+                                    </tr>`;
                                    }
                               }
                               document.getElementById('legacyData').appendChild(addHTML);
@@ -245,32 +244,23 @@ class EventHandler {
           document.getElementById('submit').addEventListener('click', () => {
                if (!document.getElementById('submit').disabled) {
                     this.setButton(false);
-                    // window.location.reload(true);
                     let data = new FormData(document.querySelector('#mainForm'));
-                    data.delete('maps');
-                    this.performAjax('XMLHttpRequest2', data, (response) => {
-                         let tempList = JSON.parse(response);
-                         if (Number(tempList.completed) === 0) {
-                              this.workList.unshift(tempList);
-                              this.counter++;
-                              this.backCount++;
-                              this.recordCount++;
-                              document.getElementById('back').innerText = ` ${this.backCount}`;
-                              document.getElementById('forward').innerText = ` ${this.forwardCount - 1}`;
-                              document.getElementById('result').innerText = 'Request received. Thank you';
-                              FadeStuff.doFade('in', 'result');
-                              FadeStuff.doFade('out', 'result');
-                              document.getElementById('mainForm').reset();
+                    this.performAjax('XMLHttpRequest2', data, (done) => {
+                         console.log(done);
+                         this.backCount = 0;
+                         this.forwardCount = 0;
+                         if (document.getElementById('completed').checked) {
+                              document.getElementById('result').innerText = 'Marked as complete. Thank you';
+                              // window.location.reload(true);
                          } else {
-                              this.counter--;
-                              this.recordCount--;
-                              this.forwardCount--;
-                              document.getElementById('back').innerText = ` ${this.backCount}`;
-                              document.getElementById('forward').innerText = ` ${this.forwardCount}`;
-                              this.completedList.push(tempList);
-                              this.putData();
-                              document.getElementById('mainForm').reset();
+                              document.getElementById('result').innerText = 'Request received. Thank you';
+                              // document.getElementById('forward').innerText = ` ${this.forwardCount}`;
                          }
+                         FadeStuff.doFade('in', 'result');
+                         FadeStuff.doFade('out', 'result');
+                         document.getElementById('mainForm').reset();
+                         this.workList = [];
+                         this.populateForm();
                     });
                }
           });
